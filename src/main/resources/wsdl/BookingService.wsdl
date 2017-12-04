@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BookingServiceService" targetNamespace="http://service.springbootapachecxfservice.techjava.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.springbootapachecxfservice.techjava.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://service.springbootapachecxfservice.techjava.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://service.springbootapachecxfservice.techjava.com/" version="1.0">
+
+  <xs:element name="bookingRequest" type="tns:bookingRequest"/>
+
+  <xs:element name="bookingResponse" type="tns:bookingResponse"/>
+
+  <xs:element name="createBookRequest" type="tns:createBookRequest"/>
+
+  <xs:element name="createBookRequestResponse" type="tns:createBookRequestResponse"/>
+
+  <xs:complexType name="createBookRequest">
+    <xs:sequence>
+      <xs:element name="bookingRequest" type="tns:bookingRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookingRequest">
+    <xs:sequence>
+      <xs:element name="bookingName" type="xs:string"/>
+      <xs:element name="bookingDesc" type="xs:string"/>
+      <xs:element name="bsnNr" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="bookingId" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="createBookRequestResponse">
+    <xs:sequence>
+      <xs:element name="bookingResponse" type="tns:bookingResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bookingResponse">
+    <xs:sequence>
+      <xs:element name="status" type="xs:string"/>
+      <xs:element name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createBookRequest">
+    <wsdl:part name="parameters" element="tns:createBookRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createBookRequestResponse">
+    <wsdl:part name="parameters" element="tns:createBookRequestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BookingService">
+    <wsdl:operation name="createBookRequest">
+      <wsdl:input name="createBookRequest" message="tns:createBookRequest">
+    </wsdl:input>
+      <wsdl:output name="createBookRequestResponse" message="tns:createBookRequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BookingServiceServiceSoapBinding" type="tns:BookingService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createBookRequest">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createBookRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createBookRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BookingServiceService">
+    <wsdl:port name="BookingServicePort" binding="tns:BookingServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/BookingServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
