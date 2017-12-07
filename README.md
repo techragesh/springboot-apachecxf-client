@@ -43,6 +43,8 @@ To test this application, Checkout the service project (above link) and run the 
 
 ```
 
+* Run this maven command for client code generation: mvn clean generate-sources
+
 * ClientConfig.java
 
 ```
